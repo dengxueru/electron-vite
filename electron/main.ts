@@ -1,19 +1,20 @@
 import { app, BrowserWindow } from "electron";
-import remoteMain from "@electron/remote/main";
-remoteMain.initialize();
+import autoUpdater from "../autoUpdater";
+import Database from "../database";
+
+console.log(process.versions);
 
 app.whenReady().then(() => {
   const win = new BrowserWindow({
-    title: "Main window",
+    title: "example-app",
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false,
-      webSecurity: false,
     },
   });
-  remoteMain.enable(win.webContents);
 
-  console.log(process);
+  win.setMenu(null);
+  win.webContents.openDevTools();
+
   // You can use `process.env.VITE_DEV_SERVER_URL` when the vite command is called `serve`
   if (process.env.VITE_DEV_SERVER_URL) {
     win.loadURL(process.env.VITE_DEV_SERVER_URL);
@@ -21,6 +22,6 @@ app.whenReady().then(() => {
     // Load your file
     win.loadFile("dist/index.html");
   }
-
-  win.webContents.openDevTools();
+  new Database();
+  autoUpdater.check();
 });
