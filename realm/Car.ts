@@ -4,6 +4,7 @@ const RealmDB = require("realm");
 
 import { Car } from "./type";
 import type { Realm, Configuration } from "realm";
+import { carItem } from "../types/electron";
 
 class CarDatabase {
   realm: Realm;
@@ -20,19 +21,18 @@ class CarDatabase {
   }
 
   // 插入单条数据
-  insert() {
+  insert(list: carItem[]) {
     this.realm.write(() => {
-      this.realm.create(Car.schema.name, {
-        make: "benchi",
-        model: "glc",
-        miles: 10000,
+      list.forEach((item) => {
+        this.realm.create(Car.schema.name, item);
       });
     });
   }
 
   // 查询列表
   query() {
-    this.realm.objects(Car.schema.name);
+    const list = this.realm.objects(Car.schema.name);
+    console.log(list);
   }
 }
 

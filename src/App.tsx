@@ -6,6 +6,30 @@ export default defineComponent({
     const insert = () => {
       window.ipcRenderer.send(MainProcessChannel.TO_MAIN, {
         name: MainProcessEventName.REALM_CAR_INSERT,
+        data: {
+          carlist: [
+            {
+              make: "baoma",
+              model: "530",
+              miles: 100000,
+            },
+            {
+              make: "benchi",
+              model: "glb",
+              miles: 100,
+            },
+            {
+              make: "nissan",
+              model: "abc",
+              miles: 300,
+            },
+            {
+              make: "aodi",
+              model: "a4",
+              miles: 600,
+            },
+          ],
+        },
       });
     };
     const query = () => {

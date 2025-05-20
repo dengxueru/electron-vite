@@ -9,21 +9,26 @@ export enum MainProcessEventName {
   REALM_CAR_UPDATE = "update",
 }
 
-export type insertMainArgs = {
-  carlist: [];
+export type carItem = {
+  make: string;
+  model: string;
+  miles: number;
 };
-export type queryMainArgs = {};
+
+export type insertMainArgs = {
+  carlist: carItem[];
+};
 export type deleteMainArgs = {};
 export type updateMainArgs = {};
 
 export type BaseMainArgsMap = {
   [MainProcessEventName.REALM_CAR_INSERT]: insertMainArgs;
-  [MainProcessEventName.REALM_CAR_QUERY]: queryMainArgs;
   [MainProcessEventName.REALM_CAR_UPDATE]: deleteMainArgs;
   [MainProcessEventName.REALM_CAR_DELETE]: updateMainArgs;
+  [MainProcessEventName.REALM_CAR_QUERY]: Record<string, unknown>;
 };
 
-export type BaseMainArgs = {
+export type MainArgs = {
   [K in keyof BaseMainArgsMap]: {
     name: K;
     data: BaseMainArgsMap[K];
