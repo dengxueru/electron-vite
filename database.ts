@@ -1,28 +1,34 @@
+import { join } from "path";
+import { app } from "electron";
 import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
+const Database = require("better-sqlite3");
 
-const sqlite3 = require("sqlite3").verbose();
+const dbPath = join(app.getPath("desktop"), "foobar.db");
+console.log("DB Path:", dbPath);
 
-class Database {
-  constructor() {
-    const db = new sqlite3.Database("./sqlite3.node");
+const db = new Database(dbPath, { verbose: console.log });
 
-    db.serialize(() => {
-      db.run("CREATE TABLE lorem (info TEXT)");
+// 创建表
+db.exec(`
+  CREATE TABLE IF NOT EXISTS cats (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    age INTEGER NOT NULL
+  )
+`);
 
-      const stmt = db.prepare("INSERT INTO lorem VALUES (?)");
-      for (let i = 0; i < 10; i++) {
-        stmt.run("Ipsum " + i);
-      }
-      stmt.finalize();
+// 插入数据
+const insert = db.prepare("INSERT INTO cats (name, age) VALUES (@name, @age)");
 
-      db.each("SELECT rowid AS id, info FROM lorem", () => {});
-    });
+const insertMany = db.transaction((cats: any) => {
+  for (const cat of cats) insert.run(cat);
+});
 
-    db.close();
-  }
+insertMany([
+  { name: "Joey", age: 2 },
+  { name: "Sally", age: 4 },
+  { name: "Junior", age: 1 },
+]);
 
-  async init() {}
-}
-
-export default Database;
+export default db;

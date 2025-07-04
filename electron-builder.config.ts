@@ -2,6 +2,8 @@ import type { Configuration } from "electron-builder";
 const options: Configuration = {
   appId: "com.example.app",
   asar: true,
+  afterPack: "./build/remove.cjs",
+  asarUnpack: ["/node_modules/better-sqlite3/build/**"],
   productName: "example-app",
   directories: {
     output: "release/${version}",
@@ -23,10 +25,10 @@ const options: Configuration = {
     target: [
       {
         target: "nsis",
-        arch: ["x64"],
+        arch: ["x64", "ia32"],
       },
     ],
-    artifactName: "${productName}-${version}.${ext}",
+    artifactName: "${productName}-${arch}-${version}.${ext}",
   },
   nsis: {
     oneClick: false, // 是否一键安装

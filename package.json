@@ -12,10 +12,11 @@
     "generate-icon": "electron-icon-builder --input ./build/icons/1024x1024.png --output=./build"
   },
   "dependencies": {
-    "realm": "20.1.0",
+    "better-sqlite3": "^12.2.0",
     "vue": "^3.5.13"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^22.15.18",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vitejs/plugin-vue-jsx": "^4.1.2",
@@ -25,7 +26,6 @@
     "electron-icon-builder": "^2.0.1",
     "electron-log": "^5.4.0",
     "electron-updater": "^6.6.2",
-    "sqlite3": "^5.1.7",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",
     "vite-plugin-electron": "^0.29.0",

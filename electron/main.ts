@@ -4,9 +4,15 @@ import {
   MainProcessEventName,
 } from "./../types/electron";
 import { app, BrowserWindow, ipcMain, IpcMainEvent } from "electron";
-import { join } from "path";
+
+app.commandLine.appendSwitch("lang", "zh-CN");
+
+import { dirname, join } from "path";
 import { fileURL } from "./util";
-import carDB from "../realm/Car";
+// import carDB from "../realm/Car";
+import db from "../database";
+
+console.log(db);
 
 app.whenReady().then(() => {
   const win = new BrowserWindow({
@@ -28,19 +34,19 @@ app.whenReady().then(() => {
   // autoUpdater.check();
 });
 
-ipcMain.on(MainProcessChannel.TO_MAIN, (e: IpcMainEvent, args: MainArgs) => {
-  const { name, data } = args;
-  switch (name) {
-    case MainProcessEventName.REALM_CAR_QUERY:
-      carDB.query();
-      break;
-    case MainProcessEventName.REALM_CAR_INSERT:
-      const { carlist } = data;
-      carDB.insert(carlist);
-      break;
-    case MainProcessEventName.REALM_CAR_UPDATE:
-      break;
-    case MainProcessEventName.REALM_CAR_DELETE:
-      break;
-  }
-});
+// ipcMain.on(MainProcessChannel.TO_MAIN, (e: IpcMainEvent, args: MainArgs) => {
+//   const { name, data } = args;
+//   switch (name) {
+//     case MainProcessEventName.REALM_CAR_QUERY:
+//       carDB.query();
+//       break;
+//     case MainProcessEventName.REALM_CAR_INSERT:
+//       const { carlist } = data;
+//       carDB.insert(carlist);
+//       break;
+//     case MainProcessEventName.REALM_CAR_UPDATE:
+//       break;
+//     case MainProcessEventName.REALM_CAR_DELETE:
+//       break;
+//   }
+// });
