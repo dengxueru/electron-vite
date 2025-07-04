@@ -4,7 +4,7 @@
 
 1. 检查 asarUnpack 是否单独配置
 
-2. 如果想同时构建 x64 ia32 必须要让 electron 和 better-sqlite3 的 node_modules 保持一致，否则需要单独构建
+2. better-sqlite3 必须要在 dependencies 否则 asarUnpack 无法生效
 
 3. 如果遇到 NODE_Modeules 不一致 可以执行命令
 
