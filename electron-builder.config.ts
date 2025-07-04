@@ -25,7 +25,7 @@ const options: Configuration = {
     target: [
       {
         target: "nsis",
-        arch: ["x64", "ia32"],
+        arch: ["x64"],
       },
     ],
     artifactName: "${productName}-${arch}-${version}.${ext}",

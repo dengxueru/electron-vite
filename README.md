@@ -1,5 +1,13 @@
-# Vue 3 + TypeScript + Vite
+# better-sqlite3 构建常见问题
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+### 一、构建后会导致打开 报错 cannot find module
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+1. 检查 asarUnpack 是否单独配置
+
+2. 如果想同时构建 x64 ia32 必须要让 electron 和 better-sqlite3 的 node_modules 保持一致，否则需要单独构建
+
+3. 如果遇到 NODE_Modeules 不一致 可以执行命令
+
+`npm rebuild --runtime=electron --disturl=https://atom.io/download/atom-shell --target=37.2.0 --abi=131`
+
+4. [查看 node 版本对应的 NODE_MODULES](https://nodejs.org/en/about/previous-releases)
