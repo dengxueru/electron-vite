@@ -1,7 +1,19 @@
-import { defineComponent } from "vue";
+import { Vue, Component, Prop } from "vue-property-decorator";
 
-export default defineComponent({
+@Component
+export default class YourComponent extends Vue {
+  title: string = "Hello World";
+
+  renderPage() {
+    return <div>你</div>;
+  }
+
   render() {
-    return <div>Test</div>;
-  },
-});
+    return (
+      <div>
+        {this.title}
+        {this.renderPage()}
+      </div>
+    );
+  }
+}

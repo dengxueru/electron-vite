@@ -2,9 +2,6 @@
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "jsx": "preserve",
-    "types": ["vue-tsx-support/enable-check"],
-    "experimentalDecorators": true,
-    "jsxFactory": "VueTsxSupport",
 
     /* Linting */
     "strict": true,
