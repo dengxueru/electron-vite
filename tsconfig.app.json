@@ -1,7 +1,10 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "jsx": "preserve",
+    "types": ["vue-tsx-support/enable-check"],
+    "experimentalDecorators": true,
+    "jsxFactory": "VueTsxSupport",
 
     /* Linting */
     "strict": true,
@@ -11,5 +14,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "./*.ts", "build/**/*.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "./*.ts", "build/**/*.ts", "src/App.txs", "src/App.tsx"]
 }

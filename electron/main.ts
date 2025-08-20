@@ -19,7 +19,8 @@ app.whenReady().then(() => {
     title: "example-app",
     webPreferences: {
       nodeIntegration: true,
-      preload: join(fileURL, "./preload.mjs"),
+      preload: join(fileURL, "./preload.js"),
+      contextIsolation: false,
     },
   });
 

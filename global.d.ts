@@ -1,3 +1,5 @@
+import { ipcRenderer } from "electron/renderer";
+
 declare global {
   interface Window {
     ipcRenderer: {
