@@ -8,11 +8,10 @@
     "dev": "vite",
     "preview": "vite preview",
     "postinstall": "node ./node_modules/electron/install.js && electron-builder install-app-deps",
-    "build": "vue-tsc -b && vite build --mode production && electron-builder --config electron-builder.config.ts",
+    "build": "vite build --mode production && electron-builder --config electron-builder.config.ts",
     "generate-icon": "electron-icon-builder --input ./build/icons/1024x1024.png --output=./build"
   },
   "dependencies": {
-    "better-sqlite3": "^12.2.0",
     "vite-plugin-vue2": "^2.0.3",
     "vue": "2.7.0",
     "vue-property-decorator": "^9.1.2"
