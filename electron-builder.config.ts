@@ -3,7 +3,7 @@ const options: Configuration = {
   appId: "com.example.app",
   asar: true,
   // afterPack: "./build/afterPack/index.ts",
-  asarUnpack: ["/node_modules/better-sqlite3/build/**"],
+  // asarUnpack: ["/node_modules/better-sqlite3/build/**"],
   productName: "example-app",
   directories: {
     output: "release/${version}",
