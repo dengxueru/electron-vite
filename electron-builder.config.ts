@@ -16,7 +16,12 @@ const options: Configuration = {
     },
   ],
   mac: {
-    target: ["dmg"],
+    target: [
+      {
+        target: "dmg",
+        arch: ["arm64"],
+      },
+    ],
     icon: "build/icons/mac/icon.icns",
     artifactName: "${productName}-${version}.${ext}",
   },
