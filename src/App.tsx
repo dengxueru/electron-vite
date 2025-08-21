@@ -1,16 +1,20 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
+import Child from "./Child";
 
-@Component
-export default class YourComponent extends Vue {
+@Component({
+  components: { Child }
+})
+export default class App extends Vue {
   title: string = "Hello World";
 
   renderPage() {
-    return <div>你</div>;
+    return <div>render-page</div>;
   }
 
   render() {
     return (
       <div>
+        <Child name="我是子组件" />
         {this.title}
         {this.renderPage()}
       </div>
