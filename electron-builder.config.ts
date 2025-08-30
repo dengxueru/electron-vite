@@ -3,12 +3,18 @@ const options: Configuration = {
   appId: "com.example.app",
   asar: true,
   // afterPack: "./build/afterPack/index.ts",
-  // asarUnpack: ["/node_modules/better-sqlite3/build/**"],
-  productName: "example-app",
   directories: {
     output: "release/${version}",
   },
-  files: ["dist", "dist-electron"],
+  asarUnpack: ["**/*.node"],
+  files: ["dist", "dist-electron", "package.json"],
+  // extraResources: [
+  //   {
+  //     from: "node_modules/clipboard-files",
+  //     to: "app.asar.unpacked/node_modules/clipboard-files",
+  //     filter: ["**/*"],
+  //   },
+  // ],
   publish: [
     {
       provider: "generic",

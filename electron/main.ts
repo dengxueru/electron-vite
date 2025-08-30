@@ -1,18 +1,14 @@
-import {
-  MainArgs,
-  MainProcessChannel,
-  MainProcessEventName,
-} from "./../types/electron";
 import { app, BrowserWindow, ipcMain, IpcMainEvent } from "electron";
+
+import "./ipcMainEvent";
 
 app.commandLine.appendSwitch("lang", "zh-CN");
 
-import { dirname, join } from "path";
+import { join } from "path";
 import { fileURL } from "./util";
-// import carDB from "../realm/Car";
-// import db from "../database";
 
-// console.log(db);
+import log from "electron-log/main";
+log.initialize();
 
 app.whenReady().then(() => {
   const win = new BrowserWindow({
@@ -20,11 +16,11 @@ app.whenReady().then(() => {
     webPreferences: {
       nodeIntegration: true,
       preload: join(fileURL, "./preload.js"),
-      contextIsolation: false,
+      contextIsolation: true,
     },
   });
 
-  win.setMenu(null);
+  win.removeMenu();
   win.webContents.openDevTools();
 
   if (process.env.VITE_DEV_SERVER_URL) {
