@@ -1,5 +1,7 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import Child from "./Child";
+import wfc from './wfc/client/wfc.js'
+
 
 
 
@@ -8,8 +10,6 @@ import Child from "./Child";
 })
 export default class App extends Vue {
   title: string = "Hello World";
-
-  mounted() {}
   renderPage() {
     return (
       <div
@@ -23,6 +23,7 @@ export default class App extends Vue {
   }
 
   onClick() {
+    wfc.init()
   }
 
   render() {

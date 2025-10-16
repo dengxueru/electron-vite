@@ -12,6 +12,7 @@
     "generate-icon": "electron-icon-builder --input ./build/icons/1024x1024.png --output=./build"
   },
   "dependencies": {
+    "@electron/remote": "^2.1.3",
     "@rollup/plugin-commonjs": "^28.0.6",
     "base64-arraybuffer": "^1.0.2",
     "cpy-cli": "^6.0.0",

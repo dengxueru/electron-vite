@@ -19,7 +19,7 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": false,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
   },
-  "include": ["vite.config.ts", "env.d.ts", "electron-builder.config.ts"],
+  "include": ["vite.config.ts", "env.d.ts", "electron-builder.config.ts", "wfc.d.ts"],
 }

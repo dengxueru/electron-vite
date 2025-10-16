@@ -15,6 +15,9 @@ log.initialize();
 import {init as initProtoMain} from "../src/wfc/proto/proto_main";
 const proto = require('../marswrapper.node');
 
+const remoteMain = require('@electron/remote/main')
+remoteMain.initialize()
+
 app.disableHardwareAcceleration();
 
 app.whenReady().then(() => {
@@ -27,6 +30,7 @@ app.whenReady().then(() => {
     },
   });
 
+  remoteMain.enable(win.webContents)
   win.removeMenu();
   win.webContents.openDevTools();
 

@@ -14,5 +14,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "./*.ts", "build/**/*.ts", "src/App.txs", "src/App.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "./*.ts", "build/**/*.ts"],
 }
