@@ -51,8 +51,8 @@ var path = require('path');
 
 var cpy = path.join(__dirname, '../node_modules/cpy-cli/cli.js ');
 
-let fromParam = './rc_addon/' + addonName
-let toParam = './'
+const fromParam = path.resolve(__dirname, '../rc_addon', addonName);
+const toParam = path.resolve(__dirname, '../');
 shelljs.exec('node ' + cpy + ' --rename=rc.node ' + fromParam + ' ' + toParam, addCheckMark.bind(null, callback));
 
 function callback() {

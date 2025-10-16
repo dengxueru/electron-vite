@@ -1,6 +1,5 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import Child from "./Child";
-import wf from './wfc/client/wfc.js'
 
 
 
@@ -10,9 +9,7 @@ import wf from './wfc/client/wfc.js'
 export default class App extends Vue {
   title: string = "Hello World";
 
-  mounted() {
-    wf.init()
-  }
+  mounted() {}
   renderPage() {
     return (
       <div
