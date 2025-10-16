@@ -30,9 +30,6 @@ export default defineConfig(() => {
         },
         renderer: {},
       }),
-      commonjs({
-        ignoreDynamicRequires: true,
-      }),
     ],
     resolve: {
       alias: {

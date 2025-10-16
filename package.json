@@ -2,7 +2,7 @@
   "name": "electron-tsx-vite",
   "private": true,
   "version": "0.0.1",
-  "type": "commonjs",
+  "type": "module",
   "main": "dist-electron/main.js",
   "scripts": {
     "dev": "vite",
