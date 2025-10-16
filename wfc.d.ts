@@ -1,4 +1,4 @@
-declare module '*.js' {
+declare module '@/wfc/*' {
   const value: any;
   export default value;
 }

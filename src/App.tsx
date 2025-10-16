@@ -1,9 +1,6 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import Child from "./Child";
-import wfc from './wfc/client/wfc.js'
-
-
-
+import wfc from '@/wfc/client/wfc.js';
 
 @Component({
   components: { Child },
