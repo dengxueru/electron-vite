@@ -1,7 +1,8 @@
 import { Vue, Component, Prop } from "vue-property-decorator";
 import Child from "./Child";
-import electron from 'electron'
-import { join } from "path";
+import wf from './wfc/client/wfc.js'
+
+
 
 @Component({
   components: { Child },
@@ -10,10 +11,7 @@ export default class App extends Vue {
   title: string = "Hello World";
 
   mounted() {
-    const data = join(__dirname, 'index.html')
-    console.log(data)
-    console.log(electron)
-    console.log("mounted");
+    wf.init()
   }
   renderPage() {
     return (
@@ -28,7 +26,6 @@ export default class App extends Vue {
   }
 
   onClick() {
-    require('electron').shell.openExternal('https://www.baidu.com')
   }
 
   render() {

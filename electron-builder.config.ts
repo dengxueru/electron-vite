@@ -6,8 +6,9 @@ const options: Configuration = {
   directories: {
     output: "release/${version}",
   },
+  productName: "example",
   asarUnpack: ["**/*.node"],
-  files: ["dist", "dist-electron", "package.json"],
+  files: ["dist", "dist-electron", "package.json", "marswrapper.node"],
   // extraResources: [
   //   {
   //     from: "node_modules/clipboard-files",
@@ -36,7 +37,7 @@ const options: Configuration = {
     target: [
       {
         target: "nsis",
-        arch: ["x64", "ia32"],
+        arch: ["x64"],
       },
     ],
     artifactName: "${productName}-${arch}-${version}.${ext}",

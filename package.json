@@ -2,17 +2,25 @@
   "name": "electron-tsx-vite",
   "private": true,
   "version": "0.0.1",
-  "type": "module",
+  "type": "commonjs",
   "main": "dist-electron/main.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "node scripts/validate.js && node scripts/del.js ./marswrapper.node && node scripts/copy-proto.js && node scripts/copy-rcaddon.js && vite",
     "preview": "vite preview",
     "postinstall": "node ./node_modules/electron/install.js && electron-builder install-app-deps",
-    "build": "vite build --mode production && electron-builder --config electron-builder.config.ts",
+    "build": "node scripts/validate.js && node scripts/del.js ./marswrapper.node && node scripts/copy-proto.js && node scripts/copy-rcaddon.js && vite build --mode production && electron-builder --config electron-builder.config.ts",
     "generate-icon": "electron-icon-builder --input ./build/icons/1024x1024.png --output=./build"
   },
   "dependencies": {
     "@rollup/plugin-commonjs": "^28.0.6",
+    "base64-arraybuffer": "^1.0.2",
+    "cpy-cli": "^6.0.0",
+    "del-cli": "^7.0.0",
+    "detectrtc": "^1.4.1",
+    "file-system": "^2.2.2",
+    "long": "^5.3.2",
+    "md5-file": "^5.0.0",
+    "shelljs": "^0.10.0",
     "vite-plugin-vue2": "^2.0.3",
     "vue": "2.7.0",
     "vue-property-decorator": "^9.1.2"

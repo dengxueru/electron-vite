@@ -4,15 +4,22 @@ import "./ipcMainEvent";
 
 app.commandLine.appendSwitch("lang", "zh-CN");
 
+import './remote'
+
 import { join } from "path";
 import { fileURL } from "./util";
 
 import log from "electron-log/main";
 log.initialize();
 
+import {init as initProtoMain} from "../src/wfc/proto/proto_main";
+const proto = require('../marswrapper.node');
+
+app.disableHardwareAcceleration();
+
 app.whenReady().then(() => {
+   initProtoMain(proto);
   const win = new BrowserWindow({
-    title: "example-app",
     webPreferences: {
       nodeIntegration: true,
       // preload: join(fileURL, "./preload.js"),

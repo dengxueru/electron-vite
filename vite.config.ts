@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import { createVuePlugin } from "vite-plugin-vue2";
 import electron from "vite-plugin-electron/simple";
-import commonjs from "@rollup/plugin-commonjs";
 import { resolve } from "path";
 
 console.log(process.versions.modules);
@@ -25,9 +24,9 @@ export default defineConfig(() => {
             },
           },
         },
-        preload: {
-          input: "electron/preload.ts",
-        },
+        // preload: {
+        //   input: "electron/preload.ts",
+        // },
         renderer: {},
       }),
     ],
