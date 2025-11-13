@@ -7,6 +7,8 @@ import Child from "./Child";
 export default class App extends Vue {
   title: string = "Hello World";
 
+  const a = 123;
+
   renderPage() {
     return (
       <div
