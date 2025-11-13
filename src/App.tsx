@@ -3,6 +3,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   setup() {
+    console.log('abc')
     // const insert = () => {
     //   window.ipcRenderer.send(MainProcessChannel.TO_MAIN, {
     //     name: MainProcessEventName.REALM_CAR_INSERT,
