@@ -1,5 +1,10 @@
 // 平台相关代码，目前主要用来处理electron 和 浏览器之间不同
 
+import { ipcRenderer, shell } from "electron";
+import fileSystem from "file-system";
+
+const { fs } = fileSystem;
+
 export function isElectron() {
     // Renderer process
     if (typeof window !== 'undefined' && typeof window.process === 'object' && window.process.type === 'renderer') {
@@ -20,9 +25,7 @@ export function isElectron() {
 }
 
 // pc - Electron APIs
-export const ipcRenderer = require('electron').ipcRenderer
-export const shell = require('electron').shell
-export const fs = require('file-system').fs
+export { ipcRenderer, shell, fs };
 
 const remoteWindow = (windowId) => {
     return {

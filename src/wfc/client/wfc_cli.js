@@ -6,6 +6,7 @@ import wfc from "./wfc";
 import EventType from "./wfcEvent";
 import Conversation from "../model/conversation";
 import TextMessageContent from "../messages/textMessageContent";
+import vorpalFactory from "vorpal";
 
 export default class WfcCli {
 
@@ -39,8 +40,8 @@ export default class WfcCli {
 // var wfcTest = new WfcTest();
 // wfcTest.init();
 
-var vorpal = require('vorpal')();
-var wfcCli = new WfcCli();
+const vorpal = vorpalFactory();
+const wfcCli = new WfcCli();
 
 
 vorpal

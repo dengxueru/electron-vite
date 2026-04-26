@@ -12,6 +12,7 @@ import DetectRTC from 'detectrtc';
 import Config from "../../../config";
 import {longValue, numberValue} from '../../util/longUtil'
 import Conversation from "../../../wfc/model/conversation";
+import { EventEmitter } from "events";
 
 import CallEndReason from "./callEndReason";
 import CallByeMessageContent from "../messages/callByeMessageContent";
@@ -75,7 +76,6 @@ export class AvEngineKitProxy {
         this.event.on(EventType.ConferenceEvent, this.onReceiveConferenceEvent);
         this.event.on(EventType.ConnectionStatusChanged, this.onConnectionStatusChange)
         if (!isElectron()) {
-            const EventEmitter = require("events").EventEmitter;
             this.events = new EventEmitter();
             this.events.on('voip-message', this.sendVoipListener)
             this.events.on('conference-request', this.sendConferenceRequestListener);

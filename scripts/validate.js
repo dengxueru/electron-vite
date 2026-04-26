@@ -1,6 +1,7 @@
+import fs from "node:fs";
+import md5File from "md5-file";
+
 function validate() {
-    const md5File = require('md5-file')
-    const fs = require('fs')
     // const config = require('./src/config')
 
     //     static APP_SERVER = 'https://app.wildfirechat.net';

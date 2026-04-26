@@ -1,11 +1,11 @@
-var chalk = require('chalk');
+import chalk from "chalk";
 
 /**
  * Adds mark check symbol
  */
 function addCheckMark(callback) {
-  process.stdout.write(chalk.green(' ✓'));
+  process.stdout.write(chalk.green(" ✓"));
   callback();
 }
 
-module.exports = addCheckMark;
+export default addCheckMark;

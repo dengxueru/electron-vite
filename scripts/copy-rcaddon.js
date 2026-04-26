@@ -1,11 +1,16 @@
 #!/usr/bin/env node
 
-//var opsys = process.platform;
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import shelljs from "shelljs";
+import addCheckMark from "./checkmark.js";
+
 const argv = process.argv;
 let addonName = "wfremotecontrol";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-platform = process.platform;
-arch = process.arch;
+let platform = process.platform;
+let arch = process.arch;
 
 if (argv.length > 2) {
     platform = argv[2];
@@ -38,18 +43,14 @@ switch (platform) {
         }
         break
     default:
-        console.log('unknown platform', process.platform)
-        return;
+        console.log('unknown platform', process.platform);
+        process.exit(0);
 }
 addonName += '.node'
 
-console.log("Copy " + addonName + "\n\n")
+console.log("Copy " + addonName + "\n\n");
 
-var shelljs = require('shelljs');
-var addCheckMark = require('./checkmark');
-var path = require('path');
-
-var cpy = path.join(__dirname, '../node_modules/cpy-cli/cli.js ');
+const cpy = path.join(__dirname, "../node_modules/cpy-cli/cli.js ");
 
 const fromParam = path.resolve(__dirname, '../rc_addon', addonName);
 const toParam = path.resolve(__dirname, '../');

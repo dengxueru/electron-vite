@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-const argv = process.argv
+import copydir from "copy-dir";
+
+const argv = process.argv;
 if (argv.length <= 3) {
-    console.log('Usage: node copydir.js from to')
-    return
+    console.log('Usage: node copydir.js from to');
+    process.exit(0);
 }
-const fromParam = argv[2]
-const toParam = argv[3]
+const fromParam = argv[2];
+const toParam = argv[3];
 
 console.log("Try copy " + fromParam + " to " + toParam + "\n\n")
-
-var copydir = require('copy-dir');
 
 copydir.sync(fromParam, toParam, {
   utimes: true,  // keep add time and modify time

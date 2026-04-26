@@ -1,20 +1,22 @@
 #!/usr/bin/env node
 
-const argv = process.argv
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import shelljs from "shelljs";
+import addCheckMark from "./checkmark.js";
+
+const argv = process.argv;
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 if (argv.length <= 3) {
-    console.log('Usage: node copy.js from to')
-    return
+    console.log('Usage: node copy.js from to');
+    process.exit(0);
 }
-const fromParam = argv[2]
-const toParam = argv[3]
+const fromParam = argv[2];
+const toParam = argv[3];
 
-console.log("Try copy " + fromParam + " to " + toParam + "\n\n")
+console.log("Try copy " + fromParam + " to " + toParam + "\n\n");
 
-var shelljs = require('shelljs');
-var addCheckMark = require('./checkmark');
-var path = require('path');
-
-var cpy = path.join(__dirname, '../node_modules/cpy-cli/cli.js ');
+const cpy = path.join(__dirname, "../node_modules/cpy-cli/cli.js ");
 
 shelljs.exec('node ' + cpy + ' ' + fromParam + ' ' + toParam, addCheckMark.bind(null, callback));
 

@@ -1,8 +1,15 @@
 import { app, BrowserWindow, ipcMain, IpcMainEvent } from "electron";
+import { createRequire } from "node:module";
 
 import "./ipcMainEvent";
 
 app.commandLine.appendSwitch("lang", "zh-CN");
+app.commandLine.appendSwitch("ignore-gpu-blocklist");
+app.commandLine.appendSwitch("enable-gpu-rasterization");
+app.commandLine.appendSwitch("enable-webgl");
+app.commandLine.appendSwitch("enable-webgl2-compute-context");
+app.commandLine.appendSwitch("disable-gpu-sandbox");
+app.disableDomainBlockingFor3DAPIs();
 
 import './remote'
 
@@ -12,17 +19,28 @@ import { fileURL } from "./util";
 import log from "electron-log/main";
 log.initialize();
 
-import {init as initProtoMain} from "../src/wfc/proto/proto_main";
-const proto = require('../marswrapper.node');
+const require = createRequire(import.meta.url);
 
-const remoteMain = require('@electron/remote/main')
-remoteMain.initialize()
+const remoteMain = require("@electron/remote/main");
+remoteMain.initialize();
 
-app.disableHardwareAcceleration();
+if (process.env.ELECTRON_DISABLE_HARDWARE_ACCELERATION === "1") {
+  app.disableHardwareAcceleration();
+}
 
 app.whenReady().then(() => {
-   initProtoMain(proto);
+  console.log("[main] argv:", process.argv);
+  console.log("[main] disable-gpu switch:", app.commandLine.hasSwitch("disable-gpu"));
+  console.log("[main] disable-software-rasterizer switch:", app.commandLine.hasSwitch("disable-software-rasterizer"));
+  console.log("[main] disableHardwareAcceleration env:", process.env.ELECTRON_DISABLE_HARDWARE_ACCELERATION);
+  console.log("[main] gpuFeatureStatus:", app.getGPUFeatureStatus());
+  if (process.env.ENABLE_WFC_NATIVE === "1") {
+    const { init: initProtoMain } = require("../src/wfc/proto/proto_main");
+    const proto = require("../marswrapper.node");
+    initProtoMain(proto);
+  }
   const win = new BrowserWindow({
+    title: "electron-vite-tsx GLB Viewer",
     webPreferences: {
       nodeIntegration: true,
       // preload: join(fileURL, "./preload.js"),
@@ -35,8 +53,10 @@ app.whenReady().then(() => {
   win.webContents.openDevTools();
 
   if (process.env.VITE_DEV_SERVER_URL) {
+    console.log("[main] loadURL:", process.env.VITE_DEV_SERVER_URL);
     win.loadURL(process.env.VITE_DEV_SERVER_URL);
   } else {
+    console.log("[main] loadFile: dist/index.html");
     win.loadFile("dist/index.html");
   }
   // autoUpdater.check();
