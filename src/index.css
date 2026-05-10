@@ -1,7 +1,7 @@
 video {
+  width: 400px;
   transform: scaleX(-1);
 }
-
 canvas {
-  transform: scaleX(-1);
+  width: 400px;
 }
